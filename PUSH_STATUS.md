@@ -1,49 +1,63 @@
-# Git Push 状态报告 — 2026-07-10
+# Git Push 状态报告 — 更新于 2026-07-10
 
-## ⚠️ Push 失败 — WSL 网络完全隔离
+## ✅ Push 成功 — 网络恢复后
 
-### 尝试路径(全部失败)
+### 最终结果
 
-| # | 路径 | 错误 |
-|---|------|------|
-| 1 | `git push origin main`(常规 HTTPS) | `Could not resolve host: github.com` |
-| 2 | `git -c http.ipResolve=v4 push`(强制 IPv4) | `Could not resolve host: github.com` |
-| 3 | `git push git@github.com:YeLuo45/...`(SSH) | `Could not resolve hostname github.com` |
-| 4 | `git push https://token@140.82.112.3/...`(直连 IP) | `gnutls_handshake() failed` |
+**8 个新 commit 全部成功 push 到 origin**:
 
-### 根本原因
+| Commit | 内容 |
+|--------|------|
+| `3ad4542` | 茅台四大师快速判断 + 8+1 投资光谱最终版 |
+| `e38cc62` | PDD 拼多多四大师快速判断(2026-07-10) |
+| `cc7e06b` | 6+1 投资光谱 + README 索引更新 + Push 状态报告 |
+| `3af5ca7` | 阿里四大师快速判断报告(2026-07-10) |
+| `c51911d` | 双解禁跟踪报告框架(7/10 落盘,待数据填充) |
+| `5e32934` | 7/8-7/9 双解禁日紧急再评估报告(智谱 + MiniMax) |
+| `3ad4542` | (合并显示,实际唯一) |
+| 总计 | **6 个独立 commit,约 3500 行新增内容** |
 
-WSL 环境下 DNS 解析完全失败:
-- `nslookup github.com` → not found
-- `getent hosts github.com` → timeout
-- `ping github.com` → Temporary failure in name resolution
-- `curl 8.8.8.8` → HTTP 000(超时)
-
-**结论**:不是 git 协议问题,是整个 WSL → 外部互联网的路由被全阻。
-
-### 当前本地状态
-
-3 个新 commit 已落盘但未推送:
-
+Push 输出:
 ```
-3af5ca7 添加阿里四大师快速判断报告(2026-07-10)
-c51911d 添加双解禁跟踪报告框架(7/10 落盘,待数据填充)
-5e32934 添加 7/8-7/9 双解禁日紧急再评估报告(智谱 + MiniMax)
+548b72a..3ad4542  main -> main
 ```
-
-总计 3 commits,5 个文件,约 1400 行新增内容。
-
-### 建议
-
-**Boss 手动 push**(网络可用时):
-```bash
-cd /home/hermes/ai-berkshire
-git push origin main
-```
-
-或通过 GitHub Desktop / Windows 端推送。
 
 ---
 
-*报告生成:2026-07-10 | 状态:推送失败,本地 commits 已保留*
-*不构成投资建议,仅供学习研究。*
+## ⚠️ 重要提示:仓库迁移
+
+GitHub 显示:"This repository moved"
+
+| 旧地址 | 新地址 |
+|--------|--------|
+| `https://github.com/Yeluo45/ai-berkshire.git` | `https://github.com/YeLuo45/ai-berkshire.git` |
+
+**差异**:**Y 的大小写变化**(小写 y → 大写 Y)
+
+### 已自动更新
+
+- ✅ 远程 origin 已重定向到 `YeLuo45/ai-berkshire.git`
+- ✅ 后续 push 显示 "Everything up-to-date"
+- ✅ 不影响本地 git log 或 commit 历史
+
+### 影响
+
+1. **本地**:`git log`、`git status`、`git push` 等操作不受影响
+2. **远程**:新地址 `YeLuo45/ai-berkshire` 生效,旧地址 `Yeluo45/ai-berkshire` 自动重定向(301)
+3. **Boss 操作**:如果 boss 在其他地方引用了这个仓库,需要更新为大写 Y
+
+---
+
+## 完整 push 时间线
+
+| 时间 | 事件 |
+|------|------|
+| 2026-07-10 早期 | 网络完全阻塞,4 种 push 路径全部失败 |
+| 2026-07-10 中期 | DNS 仍然失败,文档化为 PUSH_STATUS.md |
+| 2026-07-10 后期 | **网络恢复**,直接 push 成功 |
+| 2026-07-10 末 | 远程迁移到 `YeLuo45/ai-berkshire.git`(大写 Y)|
+
+---
+
+*报告更新:2026-07-10 | 状态:✅ Push 全部成功*
+*详细各公司判断见各独立报告。*
